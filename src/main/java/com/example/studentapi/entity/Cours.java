@@ -1,15 +1,55 @@
 package com.example.studentapi.entity;
 
+import javax.persistence.*;
 import java.util.List;
 
-import com.example.studentapi.dto.EtudiantDto;
-import com.example.studentapi.dto.MatiereDto;
-import com.example.studentapi.dto.ProfesseurDto;
-
+@Entity
 public class Cours {
+    @Id
     private Integer id;
-    private List<EtudiantDto> etudiantDtos;
-    private MatiereDto matiere;
-    private ProfesseurDto professeur;
 
+    @ManyToMany
+    @JoinTable(name="suit_cours",
+            joinColumns = { @JoinColumn(name = "id_cours") },
+            inverseJoinColumns = { @JoinColumn(name = "id_etudiant") })
+    private List<Etudiant> etudiants;
+
+    @ManyToOne
+    @JoinColumn(name = "id_matiere", referencedColumnName = "id")
+    private Matiere matiere;
+    @ManyToOne
+    @JoinColumn(name = "id_professeur", referencedColumnName = "id")
+    private Professeur professeur;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
+
+    public Matiere getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(Matiere matiere) {
+        this.matiere = matiere;
+    }
+
+    public Professeur getProfesseur() {
+        return professeur;
+    }
+
+    public void setProfesseur(Professeur professeur) {
+        this.professeur = professeur;
+    }
 }

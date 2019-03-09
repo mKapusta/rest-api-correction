@@ -1,14 +1,18 @@
 package com.example.studentapi.service;
 
-import com.example.studentapi.entity.Professeur;
+import com.example.studentapi.dto.ProfesseurDto;
 
 import java.util.List;
 
 public interface ProfesseurService {
 
-    List<Professeur> getAllProfesseurs();
+    List<ProfesseurDto> getAllProfesseurs();
 
-    Professeur getProfesseurById(Integer id);
+    ProfesseurDto getProfesseurById(Integer id);
 
-    Professeur saveProfesseur(Professeur professeur);
+    ProfesseurDto saveProfesseur(ProfesseurDto professeur);
+
+    void deleteProfesseurById(Integer id);
+
+    ProfesseurDto updateProfesseur(Integer id, ProfesseurDto professeur);
 }

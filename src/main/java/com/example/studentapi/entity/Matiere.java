@@ -1,8 +1,15 @@
 package com.example.studentapi.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Matiere {
 
+    @Id
     private Integer id;
+    @Column
     private String nom;
 
     public Integer getId() {

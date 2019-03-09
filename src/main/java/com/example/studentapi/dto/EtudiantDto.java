@@ -1,9 +1,20 @@
 package com.example.studentapi.dto;
 
+import com.example.studentapi.entity.Etudiant;
+
 public class EtudiantDto {
     private Integer id;
     private String nom;
     private String prenom;
+
+    public EtudiantDto() {
+    }
+
+    public EtudiantDto(Etudiant etudiant) {
+        this.id = etudiant.getId();
+        this.nom = etudiant.getNom();
+        this.prenom = etudiant.getPrenom();
+    }
 
     public Integer getId() {
         return id;

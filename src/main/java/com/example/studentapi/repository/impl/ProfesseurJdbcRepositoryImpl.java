@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -24,6 +27,9 @@ public class ProfesseurJdbcRepositoryImpl implements ProfesseurRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
     public Professeur getProfesseurById(Integer id) {
@@ -51,6 +57,21 @@ public class ProfesseurJdbcRepositoryImpl implements ProfesseurRepository {
             }
         }, keyHolder);
         return keyHolder.getKey().intValue();
+    }
+
+    @Override
+    public void deleteProfesseurById(Integer id) {
+        jdbcTemplate.update("DELETE FROM PROFESSEUR WHERE ID = ?", id);
+    }
+
+    @Override
+    public void updateProfesseur(Professeur professeur) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource();
+        ((MapSqlParameterSource) sqlParameterSource).addValue("nom", professeur.getNom());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("prenom", professeur.getPrenom());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("id", professeur.getId());
+        namedParameterJdbcTemplate.update("UPDATE PROFESSEUR SET NOM = :nom, PRENOM = :prenom WHERE ID = :id",
+                sqlParameterSource);
     }
 
 }

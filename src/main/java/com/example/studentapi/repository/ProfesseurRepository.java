@@ -10,4 +10,8 @@ public interface ProfesseurRepository {
     List<Professeur> getAllProfesseurs();
 
     Integer saveProfesseur(Professeur professeur);
+
+    void deleteProfesseurById(Integer id);
+
+    void updateProfesseur(Professeur professeur);
 }
