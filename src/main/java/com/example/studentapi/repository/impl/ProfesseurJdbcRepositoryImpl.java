@@ -38,8 +38,20 @@ public class ProfesseurJdbcRepositoryImpl implements ProfesseurJdbcRepository {
     }
 
     @Override
-    public List<Professeur> getAllProfesseurs() {
-        return jdbcTemplate.query("SELECT ID,NOM,PRENOM FROM PROFESSEUR", new BeanPropertyRowMapper<>(Professeur.class));
+    public List<Professeur> searchProfesseurs(String nom, String prenom) {
+        String sql = "SELECT ID,NOM,PRENOM FROM PROFESSEUR";
+        Object[] parameters = {};
+        if (nom != null && prenom != null) {
+            sql = sql + " WHERE nom = ? and prenom = ?";
+            parameters = new Object[]{nom, prenom};
+        } else if (nom != null) {
+            sql = sql + " WHERE nom =?";
+            parameters = new Object[]{nom};
+        } else if (prenom != null) {
+            sql = sql + " WHERE prenom =?";
+            parameters = new Object[]{prenom};
+        }
+        return jdbcTemplate.query(sql, parameters, new BeanPropertyRowMapper<>(Professeur.class));
     }
 
     @Override

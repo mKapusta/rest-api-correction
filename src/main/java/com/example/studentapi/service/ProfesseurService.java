@@ -1,12 +1,13 @@
 package com.example.studentapi.service;
 
+import com.example.studentapi.dto.ProfesseurSearchCriteria;
 import com.example.studentapi.dto.ProfesseurDto;
 
 import java.util.List;
 
 public interface ProfesseurService {
 
-    List<ProfesseurDto> getAllProfesseurs();
+    List<ProfesseurDto> searchProfesseurs(ProfesseurSearchCriteria professeurSearchCriteria);
 
     ProfesseurDto getProfesseurById(Integer id);
 

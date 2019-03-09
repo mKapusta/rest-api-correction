@@ -45,11 +45,16 @@ public class CoursServiceImpl implements CoursService {
     }
 
     @Override
-    public List<CoursDto> getAllCours() {
+    public List<CoursDto> searchCours(Boolean withoutMatiere) {
         List<CoursDto> cours = new ArrayList<>();
-        coursJpaRepository.findAll().forEach(
-                coursEntity -> cours.add(new CoursDto(coursEntity))
-        );
+        Iterable<Cours> coursEntities = null;
+        if (Boolean.TRUE.equals(withoutMatiere)) {
+            coursEntities = coursJpaRepository.findByMatiereIsNull();
+        } else {
+            coursEntities = coursJpaRepository.findAll();
+        }
+        coursEntities.forEach(
+                coursEntity -> cours.add(new CoursDto(coursEntity)));
         return cours;
     }
 
@@ -63,7 +68,7 @@ public class CoursServiceImpl implements CoursService {
         }
         if (coursDto.getMatiere() != null) {
             Matiere matiere = new Matiere();
-            cours.setId(coursDto.getMatiere().getId());
+            matiere.setId(coursDto.getMatiere().getId());
             cours.setMatiere(matiere);
         }
         if (coursDto.getEtudiants() != null) {

@@ -1,6 +1,7 @@
 package com.example.studentapi.controller;
 
 import com.example.studentapi.dto.ProfesseurDto;
+import com.example.studentapi.dto.ProfesseurSearchCriteria;
 import com.example.studentapi.service.ProfesseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class ProfesseurController {
     private ProfesseurService professeurService;
 
     @RequestMapping("")
-    public List<ProfesseurDto> getAllProfesseurs() {
-        return professeurService.getAllProfesseurs();
+    public List<ProfesseurDto> getAllProfesseurs(ProfesseurSearchCriteria professeurSearchCriteria) {
+        return professeurService.searchProfesseurs(professeurSearchCriteria);
     }
 
     @RequestMapping("/{id}")

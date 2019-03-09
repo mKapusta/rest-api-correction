@@ -1,6 +1,7 @@
 package com.example.studentapi.service.impl;
 
 import com.example.studentapi.dto.EtudiantDto;
+import com.example.studentapi.dto.EtudiantSearchCriteria;
 import com.example.studentapi.entity.Etudiant;
 import com.example.studentapi.repository.EtudiantJpaRepository;
 import com.example.studentapi.service.EtudiantService;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EtudiantServiceImpl implements EtudiantService {
@@ -16,11 +19,21 @@ public class EtudiantServiceImpl implements EtudiantService {
     private EtudiantJpaRepository etudiantJpaRepository;
 
     @Override
-    public List<EtudiantDto> getAllEtudiants() {
+    public List<EtudiantDto> getAllEtudiants(EtudiantSearchCriteria etudiantSearchCriteria) {
         List<EtudiantDto> etudiants = new ArrayList<>();
-        etudiantJpaRepository.findAll().forEach(
-                etudiant -> etudiants.add(new EtudiantDto(etudiant))
-        );
+        Iterable<Etudiant> etudiantsEntity = null;
+        if (etudiantSearchCriteria == null || etudiantSearchCriteria.hasNoCriteria()) {
+            etudiantsEntity = etudiantJpaRepository.findAll();
+        } else if (etudiantSearchCriteria.getNom() != null && etudiantSearchCriteria.getPrenom() != null) {
+            etudiantsEntity = etudiantJpaRepository.
+                    findByNomAndPrenom(etudiantSearchCriteria.getNom(), etudiantSearchCriteria.getPrenom());
+        } else if (etudiantSearchCriteria.getPrenom() != null) {
+            etudiantsEntity = etudiantJpaRepository.findByPrenom(etudiantSearchCriteria.getPrenom());
+        } else if (etudiantSearchCriteria.getNom() != null) {
+            etudiantsEntity = etudiantJpaRepository.findByNom(etudiantSearchCriteria.getNom());
+        }
+        etudiantsEntity.forEach(
+                etudiant -> etudiants.add(new EtudiantDto(etudiant)));
         return etudiants;
     }
 
@@ -43,6 +56,11 @@ public class EtudiantServiceImpl implements EtudiantService {
     public EtudiantDto updateEtudiant(Integer id, EtudiantDto etudiantDto) {
         return new EtudiantDto(etudiantJpaRepository.save(fromEtudiantDto(etudiantDto)));
 
+    }
+
+    @Override
+    public List<EtudiantDto> sortEtudiants(List<EtudiantDto> etudiants) {
+        return etudiants.stream().sorted(Comparator.comparing(EtudiantDto::getId)).collect(Collectors.toList());
     }
 
     private Etudiant fromEtudiantDto(EtudiantDto etudiantDto) {

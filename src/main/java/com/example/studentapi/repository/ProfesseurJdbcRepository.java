@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProfesseurJdbcRepository {
     Professeur getProfesseurById(Integer id);
 
-    List<Professeur> getAllProfesseurs();
+    List<Professeur> searchProfesseurs(String nom, String prenom);
 
     Integer saveProfesseur(Professeur professeur);
 

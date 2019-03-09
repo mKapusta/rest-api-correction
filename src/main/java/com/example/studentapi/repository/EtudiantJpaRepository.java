@@ -9,6 +9,7 @@ public interface EtudiantJpaRepository extends CrudRepository<Etudiant, Integer>
 
     List<Etudiant> findByPrenom(String prenom);
 
-    List<Etudiant> findByPrenomIsNull();
+    List<Etudiant> findByNomAndPrenom(String nom, String prenom);
 
+    List<Etudiant> findByNom(String nom);
 }

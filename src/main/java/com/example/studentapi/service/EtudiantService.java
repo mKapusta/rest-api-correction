@@ -1,12 +1,13 @@
 package com.example.studentapi.service;
 
 import com.example.studentapi.dto.EtudiantDto;
+import com.example.studentapi.dto.EtudiantSearchCriteria;
 
 import java.util.List;
 
 public interface EtudiantService {
 
-    List<EtudiantDto> getAllEtudiants();
+    List<EtudiantDto> getAllEtudiants(EtudiantSearchCriteria etudiantSearchCriteria);
 
     EtudiantDto getEtudiantById(Integer id);
 
@@ -15,4 +16,6 @@ public interface EtudiantService {
     void deleteEtudiant(Integer id);
 
     EtudiantDto updateEtudiant(Integer id, EtudiantDto etudiantDto);
+
+    List<EtudiantDto> sortEtudiants(List<EtudiantDto> etudiants);
 }

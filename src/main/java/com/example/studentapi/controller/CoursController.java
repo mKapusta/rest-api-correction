@@ -2,6 +2,7 @@ package com.example.studentapi.controller;
 
 import com.example.studentapi.dto.CoursDto;
 import com.example.studentapi.exception.MissingEntityException;
+import com.example.studentapi.orchestrator.CoursOrchestrator;
 import com.example.studentapi.service.CoursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class CoursController {
 
     @Autowired
     private CoursService coursService;
+
+    @Autowired
+    private CoursOrchestrator coursOrchestrator;
 
     @RequestMapping("/jdbc/{id}")
     public CoursDto getCoursWithProfesseur(@PathVariable Integer id) throws MissingEntityException {
@@ -37,12 +41,12 @@ public class CoursController {
     }
 
     @RequestMapping(value = "")
-    public List<CoursDto> getAllCours(){
-        return coursService.getAllCours();
+    public List<CoursDto> getAllCours(@RequestParam(required = false) Boolean withoutMatiere) {
+        return coursService.searchCours(withoutMatiere);
     }
 
     @RequestMapping("/{id}")
     public CoursDto getCoursById(@PathVariable Integer id) {
-        return coursService.getCoursById(id);
+        return coursOrchestrator.getCoursWithOrderedEtudiant(id);
     }
 }

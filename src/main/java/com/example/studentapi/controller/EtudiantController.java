@@ -1,6 +1,7 @@
 package com.example.studentapi.controller;
 
 import com.example.studentapi.dto.EtudiantDto;
+import com.example.studentapi.dto.EtudiantSearchCriteria;
 import com.example.studentapi.service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,8 @@ public class EtudiantController {
     private EtudiantService etudiantService;
 
     @RequestMapping("")
-    public List<EtudiantDto> getAllEtudiants() {
-        return etudiantService.getAllEtudiants();
+    public List<EtudiantDto> getAllEtudiants(EtudiantSearchCriteria etudiantSearchCriteria) {
+        return etudiantService.getAllEtudiants(etudiantSearchCriteria);
     }
 
     @RequestMapping("/{id}")

@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 public class Cours {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToMany
@@ -15,11 +16,11 @@ public class Cours {
     private List<Etudiant> etudiants;
 
     @ManyToOne
-    @JoinColumn(name = "id_matiere", referencedColumnName = "id")
+    @JoinColumn(name = "id_matiere")
     private Matiere matiere;
 
     @ManyToOne
-    @JoinColumn(name = "id_professeur", referencedColumnName = "id")
+    @JoinColumn(name = "id_professeur")
     private Professeur professeur;
 
     public Integer getId() {

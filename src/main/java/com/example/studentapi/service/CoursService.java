@@ -13,5 +13,5 @@ public interface CoursService {
 
     CoursDto saveCours(CoursDto cours);
 
-    List<CoursDto> getAllCours();
+    List<CoursDto> searchCours(Boolean withoutMatiere);
 }
