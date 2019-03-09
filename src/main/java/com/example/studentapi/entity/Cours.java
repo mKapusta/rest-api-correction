@@ -17,6 +17,7 @@ public class Cours {
     @ManyToOne
     @JoinColumn(name = "id_matiere", referencedColumnName = "id")
     private Matiere matiere;
+
     @ManyToOne
     @JoinColumn(name = "id_professeur", referencedColumnName = "id")
     private Professeur professeur;

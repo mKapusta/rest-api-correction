@@ -4,7 +4,7 @@ import com.example.studentapi.entity.Professeur;
 
 import java.util.List;
 
-public interface ProfesseurRepository {
+public interface ProfesseurJdbcRepository {
     Professeur getProfesseurById(Integer id);
 
     List<Professeur> getAllProfesseurs();

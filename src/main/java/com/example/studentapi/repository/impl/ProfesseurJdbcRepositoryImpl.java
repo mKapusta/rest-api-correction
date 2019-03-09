@@ -1,7 +1,7 @@
 package com.example.studentapi.repository.impl;
 
 import com.example.studentapi.entity.Professeur;
-import com.example.studentapi.repository.ProfesseurRepository;
+import com.example.studentapi.repository.ProfesseurJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @Repository
 @Qualifier("jdbcRepository")
-public class ProfesseurJdbcRepositoryImpl implements ProfesseurRepository {
+public class ProfesseurJdbcRepositoryImpl implements ProfesseurJdbcRepository {
 
 
     @Autowired

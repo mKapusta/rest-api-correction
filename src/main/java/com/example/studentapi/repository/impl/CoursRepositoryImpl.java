@@ -1,14 +1,14 @@
 package com.example.studentapi.repository.impl;
 
 import com.example.studentapi.entity.Cours;
-import com.example.studentapi.repository.CoursRepository;
+import com.example.studentapi.repository.CoursJdbcRepository;
 import com.example.studentapi.repository.rowmapper.CoursWithProfesseurRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CoursRepositoryImpl implements CoursRepository {
+public class CoursRepositoryImpl implements CoursJdbcRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

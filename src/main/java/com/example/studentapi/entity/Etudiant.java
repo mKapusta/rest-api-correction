@@ -13,6 +13,14 @@ public class Etudiant {
     @Column
     private String prenom;
 
+    public Etudiant(Integer id) {
+        this.id = id;
+    }
+
+    public Etudiant(){
+
+    }
+
     public Integer getId() {
         return id;
     }

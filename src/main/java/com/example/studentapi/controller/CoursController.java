@@ -5,9 +5,9 @@ import com.example.studentapi.exception.MissingEntityException;
 import com.example.studentapi.service.CoursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cours")
@@ -16,7 +16,7 @@ public class CoursController {
     @Autowired
     private CoursService coursService;
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/jdbc/{id}")
     public CoursDto getCoursWithProfesseur(@PathVariable Integer id) throws MissingEntityException {
         return coursService.getCoursWithProfesseur(id);
     }
@@ -29,5 +29,20 @@ public class CoursController {
         } catch (MissingEntityException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public CoursDto saveCours(@RequestBody CoursDto coursDto) {
+        return coursService.saveCours(coursDto);
+    }
+
+    @RequestMapping(value = "")
+    public List<CoursDto> getAllCours(){
+        return coursService.getAllCours();
+    }
+
+    @RequestMapping("/{id}")
+    public CoursDto getCoursById(@PathVariable Integer id) {
+        return coursService.getCoursById(id);
     }
 }

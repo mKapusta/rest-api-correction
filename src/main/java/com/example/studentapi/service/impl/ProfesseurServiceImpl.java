@@ -2,7 +2,7 @@ package com.example.studentapi.service.impl;
 
 import com.example.studentapi.dto.ProfesseurDto;
 import com.example.studentapi.entity.Professeur;
-import com.example.studentapi.repository.ProfesseurRepository;
+import com.example.studentapi.repository.ProfesseurJdbcRepository;
 import com.example.studentapi.service.ProfesseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ProfesseurServiceImpl implements ProfesseurService {
 
     @Autowired
-    private ProfesseurRepository professeurRepository;
+    private ProfesseurJdbcRepository professeurRepository;
 
     @Override
     public List<ProfesseurDto> getAllProfesseurs() {
