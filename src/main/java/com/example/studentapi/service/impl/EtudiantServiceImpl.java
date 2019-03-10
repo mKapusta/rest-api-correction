@@ -26,7 +26,7 @@ public class EtudiantServiceImpl implements EtudiantService {
             etudiantsEntity = etudiantJpaRepository.findAll();
         } else if (etudiantSearchCriteria.getNom() != null && etudiantSearchCriteria.getPrenom() != null) {
             etudiantsEntity = etudiantJpaRepository.
-                    findByNomAndPrenom(etudiantSearchCriteria.getNom(), etudiantSearchCriteria.getPrenom());
+                    trouverParNomEtPrenom(etudiantSearchCriteria.getNom(), etudiantSearchCriteria.getPrenom());
         } else if (etudiantSearchCriteria.getPrenom() != null) {
             etudiantsEntity = etudiantJpaRepository.findByPrenom(etudiantSearchCriteria.getPrenom());
         } else if (etudiantSearchCriteria.getNom() != null) {
