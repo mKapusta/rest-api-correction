@@ -1,29 +1,23 @@
 package com.example.studentapi.entity;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-public class Etudiant {
+public class Responsable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private String nom;
     @Column
     private String prenom;
-    @OneToMany
-    private List<Responsable> responsables;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_adresse")
-    private Adresse adresse;
 
-
-    public Etudiant(Integer id) {
+    public Responsable(Integer id) {
         this.id = id;
     }
 
-    public Etudiant(){
+    public Responsable(){
 
     }
 
@@ -49,13 +43,5 @@ public class Etudiant {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
     }
 }

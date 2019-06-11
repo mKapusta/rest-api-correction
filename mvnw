@@ -250,7 +250,7 @@ else
                 if [ "$MVNW_VERBOSE" = true ]; then
                   echo " - Running MavenWrapperDownloader.java ..."
                 fi
-                ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
+                ("$JAVA_HOME/bin/java" -distance .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
             fi
         fi
     fi

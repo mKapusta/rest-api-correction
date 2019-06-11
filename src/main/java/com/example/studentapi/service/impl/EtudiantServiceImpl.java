@@ -2,6 +2,7 @@ package com.example.studentapi.service.impl;
 
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.dto.EtudiantSearchCriteria;
+import com.example.studentapi.entity.Adresse;
 import com.example.studentapi.entity.Etudiant;
 import com.example.studentapi.repository.EtudiantJpaRepository;
 import com.example.studentapi.service.EtudiantService;
@@ -68,6 +69,11 @@ public class EtudiantServiceImpl implements EtudiantService {
         etudiant.setPrenom(etudiantDto.getPrenom());
         etudiant.setNom(etudiantDto.getNom());
         etudiant.setId(etudiantDto.getId());
+        if(etudiantDto.getAdresse() !=null){
+            etudiant.setAdresse(new Adresse());
+            etudiant.getAdresse().setVille(etudiantDto.getAdresse().getVille());
+            etudiant.getAdresse().setDistance(etudiantDto.getAdresse().getDistance());
+        }
         return etudiant;
     }
 }
