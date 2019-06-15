@@ -12,9 +12,9 @@ public class Etudiant {
     private String nom;
     @Column
     private String prenom;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etudiant")
     private List<Responsable> responsables;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_adresse")
     private Adresse adresse;
 
@@ -23,7 +23,7 @@ public class Etudiant {
         this.id = id;
     }
 
-    public Etudiant(){
+    public Etudiant() {
 
     }
 
@@ -57,5 +57,13 @@ public class Etudiant {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public List<Responsable> getResponsables() {
+        return responsables;
+    }
+
+    public void setResponsables(List<Responsable> responsables) {
+        this.responsables = responsables;
     }
 }

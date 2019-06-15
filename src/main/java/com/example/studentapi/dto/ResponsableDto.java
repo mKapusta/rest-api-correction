@@ -6,11 +6,13 @@ public class ResponsableDto {
     private Integer id;
     private String nom;
     private String prenom;
+    private EtudiantDto etudiant;
 
     public ResponsableDto(Responsable responsable) {
         this.id = responsable.getId();
         this.nom = responsable.getNom();
         this.prenom = responsable.getPrenom();
+        this.etudiant = new EtudiantDto(responsable.getEtudiant());
     }
 
     public ResponsableDto() {
@@ -39,5 +41,13 @@ public class ResponsableDto {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public EtudiantDto getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(EtudiantDto etudiant) {
+        this.etudiant = etudiant;
     }
 }

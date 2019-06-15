@@ -8,7 +8,7 @@ public interface AdresseHibernateRepository {
 
     Adresse getAdresseById(Integer id);
 
-    List<Adresse> getFurthestAdresse();
+    List<Adresse> getFurthestAdresses();
 
     void saveAdresse(Adresse adresse);
 

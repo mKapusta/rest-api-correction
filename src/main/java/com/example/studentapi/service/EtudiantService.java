@@ -2,6 +2,7 @@ package com.example.studentapi.service;
 
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.dto.EtudiantSearchCriteria;
+import com.example.studentapi.dto.ResponsableDto;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface EtudiantService {
     EtudiantDto updateEtudiant(Integer id, EtudiantDto etudiantDto);
 
     List<EtudiantDto> sortEtudiants(List<EtudiantDto> etudiants);
+
+    List<ResponsableDto> getResponsablesOfAnEtudiant(Integer idEtudiant);
 }

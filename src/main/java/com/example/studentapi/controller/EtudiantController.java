@@ -2,6 +2,7 @@ package com.example.studentapi.controller;
 
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.dto.EtudiantSearchCriteria;
+import com.example.studentapi.dto.ResponsableDto;
 import com.example.studentapi.service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,12 @@ public class EtudiantController {
     public EtudiantDto updateEtudiant(@PathVariable Integer id, @RequestBody EtudiantDto etudiantDto) {
         return etudiantService.updateEtudiant(id, etudiantDto);
     }
+
+    @RequestMapping("/{id}/responsables")
+    public List<ResponsableDto> getReponsableOfAnEtudiants(@PathVariable Integer id) {
+        return etudiantService.getResponsablesOfAnEtudiant(id);
+    }
+
 
 
 }

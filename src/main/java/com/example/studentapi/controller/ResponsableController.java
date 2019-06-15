@@ -14,27 +14,27 @@ public class ResponsableController {
     private ResponsableService responsableService;
 
     @RequestMapping("")
-    public List<ResponsableDto> getAllAdresses() {
+    public List<ResponsableDto> getAllResponsable() {
         return responsableService.getAllResponsables();
     }
 
     @RequestMapping("/{id}")
-    public ResponsableDto getAdresseById(@PathVariable Integer id) {
+    public ResponsableDto getResponsableById(@PathVariable Integer id) {
         return responsableService.getResponsableById(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponsableDto saveEtudiant(@RequestBody ResponsableDto adresseDto) {
+    public ResponsableDto saveResponsable(@RequestBody ResponsableDto adresseDto) {
         return responsableService.saveResponsable(adresseDto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteAdresseById(@PathVariable Integer id) {
+    public void deleteResponsable(@PathVariable Integer id) {
         responsableService.deleteResponsable(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponsableDto adr(@PathVariable Integer id, @RequestBody ResponsableDto adresseDto) {
+    public ResponsableDto modifyResponsable(@PathVariable Integer id, @RequestBody ResponsableDto adresseDto) {
         return responsableService.updateResponsable(id, adresseDto);
     }
 

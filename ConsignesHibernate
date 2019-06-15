@@ -1,0 +1,16 @@
+TP Hibernate :
+Ajouter une entité adresse liée aux étudiants
+Ajouter les responsables légaux liés aux étudiants
+
+Faire le requetage des adresse en hql ou jpql
+Faire le requetages des responsables via l'api criteria
+
+Faire une ressource pour recuperer adresse la plus lointaine
+Faire une resoussource pour récupérer les responsables d'un éleve
+Faire une ressource pour rechercher un responsable par nom et prénom
+
+Faire un lazy loading sur l'étudiant d'un responsable
+Ajouter delete cascade + update sur les deux
+
+
+Ajouter un etudiant dont l'adresse existe déjà: comment se déroule l'insertion? Une exception est elle levée?

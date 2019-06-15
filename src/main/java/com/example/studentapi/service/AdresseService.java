@@ -15,4 +15,6 @@ public interface AdresseService {
     void deleteAdresse(Integer id);
 
     AdresseDto updateAdresse(Integer id, AdresseDto adresseDto);
+
+    List<AdresseDto> getFurthestAdresses();
 }

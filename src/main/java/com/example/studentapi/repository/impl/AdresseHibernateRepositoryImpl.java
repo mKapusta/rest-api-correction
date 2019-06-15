@@ -29,8 +29,10 @@ public class AdresseHibernateRepositoryImpl implements AdresseHibernateRepositor
     }
 
     @Override
-    public List<Adresse> getFurthestAdresse() {
-        return null;
+    public List<Adresse> getFurthestAdresses() {
+        String hql = "FROM Adresse a WHERE a.distance = (select max(a.distance) from Adresse a)";
+        Query query = getCurrentSession().createQuery(hql);
+        return query.getResultList();
     }
 
     @Override

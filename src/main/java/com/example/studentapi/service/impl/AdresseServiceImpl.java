@@ -49,6 +49,13 @@ public class AdresseServiceImpl implements AdresseService {
         return new AdresseDto(adresseEntity);
     }
 
+    @Override
+    public List<AdresseDto> getFurthestAdresses() {
+        return adresseHibernateRepository.getFurthestAdresses().stream()
+                .map(adresse -> new AdresseDto(adresse))
+                .collect(Collectors.toList());
+    }
+
     private Adresse fromAdresseDto(AdresseDto adresseDto) {
         Adresse adresse = new Adresse();
         adresse.setDistance(adresseDto.getDistance());

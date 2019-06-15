@@ -2,9 +2,11 @@ package com.example.studentapi.service.impl;
 
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.dto.EtudiantSearchCriteria;
+import com.example.studentapi.dto.ResponsableDto;
 import com.example.studentapi.entity.Adresse;
 import com.example.studentapi.entity.Etudiant;
 import com.example.studentapi.repository.EtudiantJpaRepository;
+import com.example.studentapi.repository.ResponsableHibernateRepository;
 import com.example.studentapi.service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ import java.util.stream.Collectors;
 public class EtudiantServiceImpl implements EtudiantService {
     @Autowired
     private EtudiantJpaRepository etudiantJpaRepository;
+
+    @Autowired
+    private ResponsableHibernateRepository responsableHibernateRepository;
 
     @Override
     public List<EtudiantDto> getAllEtudiants(EtudiantSearchCriteria etudiantSearchCriteria) {
@@ -64,12 +69,19 @@ public class EtudiantServiceImpl implements EtudiantService {
         return etudiants.stream().sorted(Comparator.comparing(EtudiantDto::getId)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<ResponsableDto> getResponsablesOfAnEtudiant(Integer idEtudiant) {
+        return responsableHibernateRepository.getResponsableOfAnEtudiant(idEtudiant).stream()
+                .map(responsable -> new ResponsableDto(responsable))
+                .collect(Collectors.toList());
+    }
+
     private Etudiant fromEtudiantDto(EtudiantDto etudiantDto) {
         Etudiant etudiant = new Etudiant();
         etudiant.setPrenom(etudiantDto.getPrenom());
         etudiant.setNom(etudiantDto.getNom());
         etudiant.setId(etudiantDto.getId());
-        if(etudiantDto.getAdresse() !=null){
+        if (etudiantDto.getAdresse() != null) {
             etudiant.setAdresse(new Adresse());
             etudiant.getAdresse().setVille(etudiantDto.getAdresse().getVille());
             etudiant.getAdresse().setDistance(etudiantDto.getAdresse().getDistance());

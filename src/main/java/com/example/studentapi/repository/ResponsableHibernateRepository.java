@@ -8,7 +8,7 @@ public interface ResponsableHibernateRepository {
 
     Responsable getResponsableById(Integer id);
 
-    List<Responsable> getResponsableOfAnEtudiant();
+    List<Responsable> getResponsableOfAnEtudiant(Integer idEtudiant);
 
     void saveResponsable(Responsable responsable);
 

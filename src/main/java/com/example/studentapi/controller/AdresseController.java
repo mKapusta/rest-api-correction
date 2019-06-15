@@ -14,8 +14,12 @@ public class AdresseController {
     private AdresseService adresseService;
 
     @RequestMapping("")
-    public List<AdresseDto> getAllAdresses() {
-        return adresseService.getAllAdresses();
+    public List<AdresseDto> getAllAdresses(@RequestParam(required = false) boolean furthest) {
+        if(furthest) {
+            return adresseService.getFurthestAdresses();
+        }else{
+            return adresseService.getAllAdresses();
+        }
     }
 
     @RequestMapping("/{id}")
@@ -37,6 +41,5 @@ public class AdresseController {
     public AdresseDto adr(@PathVariable Integer id, @RequestBody AdresseDto adresseDto) {
         return adresseService.updateAdresse(id, adresseDto);
     }
-
 
 }
