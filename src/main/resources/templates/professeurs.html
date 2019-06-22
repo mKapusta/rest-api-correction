@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page des professeurs</title>
+    <link rel="stylesheet" href="../css/bulma.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Liste des Professeur</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="professeur : ${professeurs}">
+            <td th:text="${professeur.id}"></td>
+            <td th:text="${professeur.nom}"></td>
+            <td th:text="${professeur.prenom}"></td>
+        </tr>
+        </tbody>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <h1 class="title">Ajouter un professeur</h1>
+    <form action="#" th:action="@{/professeurs-view/create}" th:object="${newProfesseur}" method="post">
+        <div class="field">
+            <label class="label">Nom</label>
+            <div class="control">
+                <input class="input" type="text" th:field="*{nom}" placeholder="Nom"/>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Prenom</label>
+            <div class="control">
+                <input class="input" type="text" th:field="*{prenom}" placeholder="Prenom"/>
+            </div>
+        </div>
+        <button type="submit" class="button is-link">Ajouter</button>
+    </form>
+</div>
+</body>
+</html>

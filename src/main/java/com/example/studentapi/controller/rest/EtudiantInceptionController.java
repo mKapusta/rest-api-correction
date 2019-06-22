@@ -1,4 +1,4 @@
-package com.example.studentapi.controller;
+package com.example.studentapi.controller.rest;
 
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.service.EtudiantInceptionService;

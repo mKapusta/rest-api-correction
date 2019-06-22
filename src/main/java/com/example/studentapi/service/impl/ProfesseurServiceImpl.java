@@ -1,7 +1,7 @@
 package com.example.studentapi.service.impl;
 
-import com.example.studentapi.dto.ProfesseurSearchCriteria;
 import com.example.studentapi.dto.ProfesseurDto;
+import com.example.studentapi.dto.ProfesseurSearchCriteria;
 import com.example.studentapi.entity.Professeur;
 import com.example.studentapi.repository.ProfesseurJdbcRepository;
 import com.example.studentapi.service.ProfesseurService;
@@ -19,9 +19,15 @@ public class ProfesseurServiceImpl implements ProfesseurService {
 
     @Override
     public List<ProfesseurDto> searchProfesseurs(ProfesseurSearchCriteria professeurSearchCriteria) {
-        return professeurRepository.searchProfesseurs(professeurSearchCriteria.getNom(), professeurSearchCriteria.getPrenom()).stream()
-                .map(professeur -> new ProfesseurDto(professeur))
-                .collect(Collectors.toList());
+        if (professeurSearchCriteria == null) {
+            return professeurRepository.getAllProfesseurs().stream()
+                    .map(professeur -> new ProfesseurDto(professeur))
+                    .collect(Collectors.toList());
+        } else {
+            return professeurRepository.searchProfesseurs(professeurSearchCriteria.getNom(), professeurSearchCriteria.getPrenom()).stream()
+                    .map(professeur -> new ProfesseurDto(professeur))
+                    .collect(Collectors.toList());
+        }
     }
 
     @Override

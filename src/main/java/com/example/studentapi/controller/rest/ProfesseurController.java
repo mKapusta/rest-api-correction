@@ -1,4 +1,4 @@
-package com.example.studentapi.controller;
+package com.example.studentapi.controller.rest;
 
 import com.example.studentapi.dto.ProfesseurDto;
 import com.example.studentapi.dto.ProfesseurSearchCriteria;
