@@ -1,0 +1,13 @@
+TP Hibernate :
+1/ lier etudiant avec : adresse
+2/ lier étudiant avec : responsable legal
+
+3/ Ecrire le DAO des adresses avec du HQL ou du JPQL
+4/ Ecrire le DAO du responsable legal en api criteria
+
+5/ Faire une ressource qui recupere l' adresse la plus lointaine
+6/ Faire une ressource qui Recupere les responsables d'un éleve
+7/ Faire une ressource qui recupère les responsable par noms ou prénoms
+
+8/ Ajouter du lazy loading sur la ressource qui réucpère l'étudiant d'un responsable
+9/ Ajouter un comportement de CASCADE pour l'étudiant sur ses responsables et adresses
