@@ -5,6 +5,8 @@ import com.example.studentapi.dto.ProfesseurDto;
 import com.example.studentapi.entity.Professeur;
 import com.example.studentapi.repository.ProfesseurJdbcRepository;
 import com.example.studentapi.service.ProfesseurService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,14 @@ import java.util.stream.Collectors;
 @Service
 public class ProfesseurServiceImpl implements ProfesseurService {
 
+    private static Logger LOG = LoggerFactory.getLogger(ProfesseurServiceImpl.class);
+
     @Autowired
     private ProfesseurJdbcRepository professeurRepository;
 
     @Override
     public List<ProfesseurDto> searchProfesseurs(ProfesseurSearchCriteria professeurSearchCriteria) {
+        LOG.info("Début du service");
         return professeurRepository.searchProfesseurs(professeurSearchCriteria.getNom(), professeurSearchCriteria.getPrenom()).stream()
                 .map(professeur -> new ProfesseurDto(professeur))
                 .collect(Collectors.toList());
