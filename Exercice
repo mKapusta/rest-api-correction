@@ -1,0 +1,7 @@
+TP Thymeleaf:
+1/ Faire une page HTML qui affiche la liste des étudiants dans un tableau :
+Id, nom, prénom
+
+2/ Ajouter un fichier css de votre choix (je ne juge pas le style :-))
+
+3/ Ajouter un formulaire permettant de créer un étudiant supplémentaire et qui rafraichisse la page des étudiants
