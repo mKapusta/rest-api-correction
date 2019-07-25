@@ -1,5 +1,7 @@
 package com.example.studentapi.controller;
 
+import javax.validation.Valid;
+
 import com.example.studentapi.dto.CoursDto;
 import com.example.studentapi.exception.MissingEntityException;
 import com.example.studentapi.orchestrator.CoursOrchestrator;
@@ -36,7 +38,7 @@ public class CoursController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public CoursDto saveCours(@RequestBody CoursDto coursDto) {
+    public CoursDto saveCours(@RequestBody @Valid CoursDto coursDto) {
         return coursService.saveCours(coursDto);
     }
 

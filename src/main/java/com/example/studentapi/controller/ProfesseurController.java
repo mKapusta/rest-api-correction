@@ -1,5 +1,7 @@
 package com.example.studentapi.controller;
 
+import javax.validation.Valid;
+
 import com.example.studentapi.dto.ProfesseurDto;
 import com.example.studentapi.dto.ProfesseurSearchCriteria;
 import com.example.studentapi.service.ProfesseurService;
@@ -26,7 +28,7 @@ public class ProfesseurController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ProfesseurDto saveProfesseur(@RequestBody ProfesseurDto professeur) {
+    public ProfesseurDto saveProfesseur(@RequestBody @Valid ProfesseurDto professeur) {
         return professeurService.saveProfesseur(professeur);
     }
 

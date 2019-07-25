@@ -1,5 +1,8 @@
 package com.example.studentapi.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.example.studentapi.entity.Cours;
 
 import java.util.List;
@@ -8,7 +11,9 @@ import java.util.stream.Collectors;
 public class CoursDto {
     private Integer id;
     private List<EtudiantDto> etudiants;
+    @NotNull(message = "Matiere obligatoire")
     private MatiereDto matiere;
+    @NotNull(message = "Professeur obligatoire")
     private ProfesseurDto professeur;
 
     public CoursDto(){}

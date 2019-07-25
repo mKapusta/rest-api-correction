@@ -1,10 +1,13 @@
 package com.example.studentapi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import com.example.studentapi.entity.Matiere;
 
 public class MatiereDto {
 
     private Integer id;
+    @NotBlank(message = "Nom de matiere obligatoire")
     private String nom;
 
     public MatiereDto() {

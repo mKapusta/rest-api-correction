@@ -1,9 +1,12 @@
 package com.example.studentapi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import com.example.studentapi.entity.Professeur;
 
 public class ProfesseurDto {
     private Integer id;
+    @NotBlank(message = "Nom obligatoire")
     private String nom;
     private String prenom;
 
