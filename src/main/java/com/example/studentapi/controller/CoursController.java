@@ -1,19 +1,21 @@
 package com.example.studentapi.controller;
 
-import javax.validation.Valid;
-
 import com.example.studentapi.dto.CoursDto;
 import com.example.studentapi.exception.MissingEntityException;
 import com.example.studentapi.orchestrator.CoursOrchestrator;
 import com.example.studentapi.service.CoursService;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/cours")
+@Validated
 public class CoursController {
 
     @Autowired
@@ -28,7 +30,7 @@ public class CoursController {
     }
 
     @RequestMapping("/responseEntity/{id}")
-    public ResponseEntity<CoursDto> getCoursWithProfesseurResponseEntity(@PathVariable Integer id) {
+    public ResponseEntity<CoursDto> getCoursWithProfesseurResponseEntity(@PathVariable  @Range(min = 1) Integer id) {
         ResponseEntity responseEntity = null;
         try {
             return ResponseEntity.ok().body(coursService.getCoursWithProfesseur(id));
@@ -48,7 +50,7 @@ public class CoursController {
     }
 
     @RequestMapping("/{id}")
-    public CoursDto getCoursById(@PathVariable Integer id) {
+    public CoursDto getCoursById(@PathVariable @Range(min = 1) Integer id) {
         return coursOrchestrator.getCoursWithOrderedEtudiant(id);
     }
 }

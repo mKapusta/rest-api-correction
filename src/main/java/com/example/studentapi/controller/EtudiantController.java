@@ -1,22 +1,19 @@
 package com.example.studentapi.controller;
 
-import javax.validation.Valid;
-
 import com.example.studentapi.dto.EtudiantDto;
 import com.example.studentapi.dto.EtudiantSearchCriteria;
 import com.example.studentapi.service.EtudiantService;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/etudiants")
+@Validated
 public class EtudiantController {
     @Autowired
     private EtudiantService etudiantService;
@@ -27,7 +24,7 @@ public class EtudiantController {
     }
 
     @RequestMapping("/{id}")
-    public EtudiantDto getEtudiantById(@PathVariable Integer id) {
+    public EtudiantDto getEtudiantById(@PathVariable @Range(min=1) Integer id) {
         return etudiantService.getEtudiantById(id);
     }
 
@@ -37,12 +34,12 @@ public class EtudiantController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteEtudiantById(@PathVariable Integer id) {
+    public void deleteEtudiantById(@PathVariable @Range(min=1) Integer id) {
         etudiantService.deleteEtudiant(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public EtudiantDto updateEtudiant(@PathVariable Integer id, @RequestBody EtudiantDto etudiantDto) {
+    public EtudiantDto updateEtudiant(@PathVariable Integer id,@Valid @RequestBody EtudiantDto etudiantDto) {
         return etudiantService.updateEtudiant(id, etudiantDto);
     }
 }
