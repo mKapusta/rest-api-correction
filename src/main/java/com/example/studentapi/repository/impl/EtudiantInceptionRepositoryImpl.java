@@ -24,6 +24,11 @@ public class EtudiantInceptionRepositoryImpl implements EtudiantInceptionReposit
                 = restTemplate.exchange(inceptionUrl, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Etudiant>>() {});
         return response.getBody();
+
+
+
+        //
+
     }
 
     @Override

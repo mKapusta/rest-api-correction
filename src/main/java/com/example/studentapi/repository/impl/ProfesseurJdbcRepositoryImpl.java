@@ -25,8 +25,12 @@ import java.util.List;
 public class ProfesseurJdbcRepositoryImpl implements ProfesseurJdbcRepository {
 
 
-    @Autowired
+
     private JdbcTemplate jdbcTemplate;
+
+    public ProfesseurJdbcRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
